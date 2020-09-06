@@ -1,0 +1,131 @@
+{
+  "name": "@himenon/react-app-template",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://github.com/Himenon/react-app-template#readme",
+  "bugs": "https://github.com/Himenon/react-app-template/issues",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Himenon/react-app-template.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production yarn webpack:build && yarn tsc:build",
+    "commit": "npx git-cz",
+    "depcruise": "depcruise --validate .dependency-cruiser.js src",
+    "depcruise:html": "depcruise --validate --output-type err-html -f dependency-report.html .dependency-cruiser.js src",
+    "deploy": "yarn build && yarn publish:site",
+    "format": "yarn lint --fix && prettier --write \"**/*.{ts,tsx,js,jsx,json,yml,yaml,html,md}\"",
+    "postinstall": "yarn-deduplicate --strategy highest",
+    "lint": "eslint -c ./.eslintrc.js 'src/**/*.{ts,tsx}'",
+    "lint:fix": "yarn lint --fix",
+    "publish:site": "ts-node -P ./scripts/tsconfig.cli.json ./scripts/publish.ts",
+    "serve": "serve dist",
+    "start": "yarn webpack:dev",
+    "test": "yarn test:jest && yarn depcruise",
+    "test:jest": "jest -c ./jest.config.json",
+    "test:jest:watch": "yarn test:jest --watch",
+    "tsc:build": "tsc -p tsconfig.build.json",
+    "version_up": "lerna version --yes",
+    "webpack:build": "webpack --config webpack.config.ts",
+    "webpack:dev": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "resolutions": {
+    "@types/webpack": "4.41.20",
+    "@types/webpack-dev-server": "3.11.0"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-router-dom": "5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.11.6",
+    "@babel/preset-env": "7.11.5",
+    "@commitlint/cli": "9.1.2",
+    "@commitlint/config-conventional": "9.1.2",
+    "@types/clean-webpack-plugin": "0.1.3",
+    "@types/copy-webpack-plugin": "6.0.0",
+    "@types/gh-pages": "3.0.0",
+    "@types/html-webpack-plugin": "3.2.3",
+    "@types/jest": "26.0.13",
+    "@types/mini-css-extract-plugin": "0.9.1",
+    "@types/react": "16.9.49",
+    "@types/react-dom": "16.9.8",
+    "@types/react-router-dom": "5.1.5",
+    "@types/resolve-pkg": "2.0.0",
+    "@types/webpack": "4.41.20",
+    "@types/webpack-dev-server": "3.11.0",
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
+    "autoprefixer": "9.8.6",
+    "babel-loader": "8.1.0",
+    "clean-webpack-plugin": "3.0.0",
+    "commitizen": "4.2.1",
+    "conventional-changelog-angular-all": "1.7.0",
+    "copy-webpack-plugin": "6.1.0",
+    "core-js": "3.6.5",
+    "cross-env": "7.0.2",
+    "css-loader": "4.2.2",
+    "dependency-cruiser": "9.12.0",
+    "eslint": "7.8.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.20.6",
+    "eslint-plugin-react-hooks": "4.1.0",
+    "fibers": "5.0.0",
+    "fork-ts-checker-notifier-webpack-plugin": "3.0.0",
+    "fork-ts-checker-webpack-plugin": "5.1.0",
+    "friendly-errors-webpack-plugin": "1.7.0",
+    "gh-pages": "3.1.0",
+    "html-webpack-plugin": "4.4.1",
+    "husky": "4.2.5",
+    "import-sort-style-module": "6.0.0",
+    "jest": "26.4.2",
+    "lerna": "3.22.1",
+    "lint-staged": "10.3.0",
+    "mini-css-extract-plugin": "0.11.0",
+    "optimize-css-assets-webpack-plugin": "5.0.4",
+    "postcss-loader": "3.0.0",
+    "prettier": "2.1.1",
+    "prettier-plugin-import-sort": "0.0.4",
+    "progress-bar-webpack-plugin": "2.1.0",
+    "regenerator-runtime": "0.13.7",
+    "resolve-pkg": "2.0.0",
+    "sass": "1.26.10",
+    "sass-loader": "10.0.2",
+    "serve": "11.3.2",
+    "sort-package-json": "1.44.0",
+    "style-loader": "1.2.1",
+    "styled-components": "5.2.0",
+    "terser-webpack-plugin": "4.1.0",
+    "ts-jest": "26.3.0",
+    "ts-loader": "8.0.3",
+    "ts-node": "9.0.0",
+    "typescript": "4.0.2",
+    "webpack": "4.44.1",
+    "webpack-bundle-analyzer": "3.8.0",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.0",
+    "webpack-manifest-plugin": "2.2.0",
+    "webpack-notifier": "1.8.0",
+    "yarn-deduplicate": "3.0.0"
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  }
+}

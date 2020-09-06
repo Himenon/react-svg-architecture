@@ -1,0 +1,6 @@
+dist
+lib
+*.tsbuildinfo
+.DS_Store
+node_modules
+*.log
